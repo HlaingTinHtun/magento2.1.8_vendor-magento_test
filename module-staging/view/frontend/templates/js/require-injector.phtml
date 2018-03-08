@@ -1,0 +1,10 @@
+<script>
+    require(<?php /* @noEscape */ echo json_encode([$block->getRequireModuleName()]); ?>, function() {
+        var config = {
+            map: {
+                '*': <?php /* @noEscape */ echo json_encode($block->getInjectionsList(), JSON_UNESCAPED_SLASHES); ?>
+            }
+        };
+        require.config(config);
+    });
+</script>

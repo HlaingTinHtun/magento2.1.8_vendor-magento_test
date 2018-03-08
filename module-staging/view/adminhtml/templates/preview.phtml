@@ -1,0 +1,114 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Staging\Block\Adminhtml\Update\Preview */
+?>
+
+<div class="staging-preview-header" data-role="preview-header">
+    <a href="<?php /* @noEscape */ echo $block->getHomeUrl() ?>" class="logo">
+        <img src="<?php /* @noEscape */ echo $block->getLogoSrc() ?>" alt="<?php /* @noEscape */ echo __('Magento Admin Panel') ?>"/>
+    </a>
+
+    <div class="staging-preview-options">
+        <div class="staging-preview-item-title staging-preview-item-calendar" data-role="collapsible-title" tabindex="3">
+            <div class="title">
+                <?php /* @noEscape */ echo __('Calendar'); ?>
+            </div>
+            <div class="subtitle" title="<?php echo $block->escapeHtml($block->getCalendarTabCaption()) ?>">
+                <?php echo $block->escapeHtml($block->getCalendarTabCaption()); ?>
+            </div>
+        </div>
+        <div class="staging-preview-item-content-wrapper" data-role="collapsible-content">
+            <div class="actions-toolbar">
+                <button type="button" class="action-default action-primary" data-role="share-button">
+                    <span><?php /* @noEscape */ echo __('Share'); ?></span>
+                </button>
+                <button type="button" class="action-default action-primary" data-role="update-button">
+                    <span><?php /* @noEscape */ echo __('Preview'); ?></span>
+                </button>
+                <button
+                    type="button"
+                    class="action-close"
+                    title="<?php echo $block->escapeHtml(__('Close')) ?>"
+                    data-role="collapsible-content-close">
+                    <span><?php /* @noEscape */ echo __('Close'); ?></span>
+                </button>
+            </div>
+            <div class="staging-preview-item-content">
+                <?php echo $block->getFormHtml(); ?>
+                <?php echo $block->getChildHtml('staging_update_preview_grid'); ?>
+            </div>
+        </div>
+
+        <div class="staging-preview-item-title staging-preview-item-customer" data-role="collapsible-title" tabindex="5">
+            <div class="title"><?php /* @noEscape */ echo __('Scope'); ?></div>
+            <div class="subtitle" title=""></div>
+        </div>
+        <div class="staging-preview-item-content-wrapper" data-role="collapsible-content">
+            <div class="actions-toolbar">
+                <button type="button" class="action-default action-primary" data-role="update-button">
+                    <span><?php /* @noEscape */ echo __('Preview'); ?></span>
+                </button>
+                <button
+                    type="button"
+                    class="action-close"
+                    title="<?php echo $block->escapeHtml(__('Close')) ?>"
+                    data-role="collapsible-content-close">
+                    <span><?php /* @noEscape */ echo __('Close'); ?></span>
+                </button>
+            </div>
+            <div class="staging-preview-item-content">
+                <form action="" class="staging-preview-item-segment">
+                    <fieldset class="admin__fieldset" data-bind="scope: 'store-views'">
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-role="share-modal" style="display: none">
+    <p>Please press CTRL+C for copying URL into buffer to share this Preview.</p>
+    <input class="admin__legend" name="url" title="Preview Url" type="text" data-role="share-modal-input">
+</div>
+<div class="staging-preview-content" data-role="iframe-container">
+    <div class="staging-preview-content-dynamic">
+        <iframe data-role="preview-iframe" frameborder="0" src="<?php echo $block->escapeXssInUrl($block->getPreviewFrontendUrl()); ?>"></iframe>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "preview": {
+                        "deps": ["store-views"],
+                        "component": "Magento_Staging/js/preview/preview",
+                        "sidParam": "<?php /* @noEscape */ echo $block->getSidParamName(); ?>",
+                        "storeParam": "<?php /* @noEscape */ echo $block->getStoreParamName(); ?>",
+                        "versionParam": "<?php /* @noEscape */ echo $block->getVersionParamName(); ?>",
+                        "previewUrlParam": "<?php /* @noEscape */ echo $block->getPreviewUrlParamName(); ?>",
+                        "previewStoreParam": "<?php /* @noEscape */ echo $block->getPreviewStoreParamName(); ?>",
+                        "previewVersionParam": "<?php /* @noEscape */ echo $block->getPreviewVersionParamName(); ?>",
+                        "datetimeFormat": "<?php /* @noEscape */ echo $block->getDateTimeFormat(); ?>",
+                        "timezoneOffset": "<?php echo $block->escapeHtml($block->getTimezoneOffset()); ?>",
+                        "baseUrl": "<?php echo $block->escapeXssInUrl($block->getPreviewBackendUrl()); ?>"
+                    },
+                    "store-views": {
+                        "component": "Magento_Ui/js/form/element/select",
+                        "label": "Select StoreView",
+                        "template": "ui/form/field",
+                        "value": "<?php echo $block->escapeHtml($block->getPreviewStoreCode()); ?>",
+                        "options": <?php /* @noEscape */ echo $block->getStoreSelectorOptions(); ?>
+                    }
+                }
+            }
+        }
+    }
+</script>

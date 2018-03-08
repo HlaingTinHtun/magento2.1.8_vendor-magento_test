@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="sales_rule_information" class="Magento\Staging\Ui\Component\Form\Fieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Cart Price Rules</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <insertListing name="staging_update_salesrule_grid">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="autoRender" xsi:type="boolean">true</item>
+                    <item name="dataScope" xsi:type="string">staging_update_salesrule_grid</item>
+                    <item name="ns" xsi:type="string">staging_update_salesrule_grid</item>
+                    <item name="externalProvider" xsi:type="string">staging_update_salesrule_grid.staging_update_salesrule_grid_data_source</item>
+                    <item name="selectionsProvider" xsi:type="string">staging_update_salesrule_grid.staging_update_salesrule_grid.staging_update_salesrule_grid_columns.ids</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="updateId" xsi:type="string">${ $.provider }:data.general.id</item>
+                    </item>
+                    <item name="exports" xsi:type="array">
+                        <item name="updateId" xsi:type="string">${ $.externalProvider }:params.update_id</item>
+                    </item>
+                </item>
+            </argument>
+        </insertListing>
+        <modal name="salesrulestaging_update_form_modal">
+            <insertForm name="salesrule_update_form_loader">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="ns" xsi:type="string">salesrulestaging_update_form</item>
+                        <item name="component" xsi:type="string">Magento_Staging/js/form/components/insert-form</item>
+                        <item name="loading" xsi:type="boolean">false</item>
+                        <item name="toolbarContainer" xsi:type="string">${ $.parentName }</item>
+                        <item name="render_url" xsi:type="url" path="mui/index/render_handle">
+                            <param name="handle">salesrulestaging_update</param>
+                            <param name="buttons">1</param>
+                        </item>
+                        <item name="externalProvider" xsi:type="string">${ $.ns }.salesrulestaging_update_form_data_source</item>
+                        <item name="formSubmitType" xsi:type="string">ajax</item>
+                        <item name="upcomingListingProvider" xsi:type="string">staging_update_salesrule_grid</item>
+                        <item name="removeModalProvider" xsi:type="string">${ $.ns}.${ $.ns}.salesrulestaging_update_remove_form_modal</item>
+                        <item name="removeResponseProvider" xsi:type="string">${ $.removeModalProvider }.update_remove_form_loader:responseData</item>
+                        <item name="modalTitleProvider" xsi:type="string">${ $.externalProvider }:data.name</item>
+                        <item name="modalSubTitleProvider" xsi:type="string">${ $.externalProvider }:data.staging.name</item>
+                    </item>
+                </argument>
+            </insertForm>
+        </modal>
+        <modal name="salesrulestaging_update_remove_form_modal">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="options" xsi:type="array">
+                        <item name="title" xsi:type="string" translate="true">Remove Cart Price Rule from Campaign</item>
+                    </item>
+                </item>
+            </argument>
+            <insertForm name="update_remove_form_loader">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Magento_Staging/js/form/components/insert-form</item>
+                        <item name="source" xsi:type="string">staging</item>
+                        <item name="ns" xsi:type="string">salesrulestaging_update_remove_form</item>
+                        <item name="toolbarContainer" xsi:type="string">${ $.parentName }</item>
+                        <item name="render_url" xsi:type="url" path="mui/index/render_handle">
+                            <param name="handle">salesrulestaging_update_remove</param>
+                            <param name="buttons">1</param>
+                        </item>
+                        <item name="externalProvider" xsi:type="string">${ $.ns }.salesrulestaging_update_remove_form_data_source</item>
+                        <item name="formSubmitType" xsi:type="string">ajax</item>
+                        <item name="upcomingListingProvider" xsi:type="string">staging_update_salesrule_grid</item>
+                    </item>
+                </argument>
+            </insertForm>
+        </modal>
+    </fieldset>
+</form>

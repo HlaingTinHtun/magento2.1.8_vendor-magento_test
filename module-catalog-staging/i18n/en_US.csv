@@ -1,0 +1,63 @@
+"Something went wrong while saving the category.","Something went wrong while saving the category."
+"Attribute ""%1"" is required.","Attribute ""%1"" is required."
+"This product no longer exists.","This product no longer exists."
+"Unable to save product","Unable to save product"
+"The image cannot be removed as it has been assigned to the other image role","The image cannot be removed as it has been assigned to the other image role"
+Enabled,Enabled
+Disabled,Disabled
+View/Edit,View/Edit
+Delete,Delete
+Preview,Preview
+"Scheduled Changes","Scheduled Changes"
+"Start Date","Start Date"
+"Start Time","Start Time"
+Name,Name
+Description,Description
+Action,Action
+"End Date","End Date"
+"End Time","End Time"
+"Update Information","Update Information"
+"Remove Category from Update","Remove Category from Update"
+"Update Name","Update Name"
+"Enable Category","Enable Category"
+"Include in Menu","Include in Menu"
+"Category Name","Category Name"
+Content,Content
+"Category Image","Category Image"
+"Add CMS Block","Add CMS Block"
+"Display Settings","Display Settings"
+Anchor,Anchor
+"Sort Products By","Sort Products By"
+"Use All","Use All"
+"Default Product Sorting","Default Product Sorting"
+"Use Config Settings","Use Config Settings"
+"Layered Navigation Price Step","Layered Navigation Price Step"
+"Search Engine Optimization","Search Engine Optimization"
+"Meta Title","Meta Title"
+"Meta Keywords","Meta Keywords"
+"Meta Description","Meta Description"
+Design,Design
+"Use Parent Category Settings","Use Parent Category Settings"
+"New Theme","New Theme"
+Layout,Layout
+"Layout Update XML","Layout Update XML"
+"Apply Design to Products","Apply Design to Products"
+"Save as a New Update","Save as a New Update"
+"Move to Another Campaign","Move to Another Campaign"
+"Delete the Update","Delete the Update"
+"Deleting the update will remove the page from this campaign and all scheduled changes will be lost.","Deleting the update will remove the page from this campaign and all scheduled changes will be lost."
+20,20
+30,30
+50,50
+100,100
+200,200
+"Update Information","Update Information"
+"Set Product as New","Set Product as New"
+Categories,Categories
+ID,ID
+Path,Path
+Status,Status
+"product","Products"
+"catalog_category","Categories"
+Magento\Catalog\Api\Data\ProductInterface,product
+Magento\Catalog\Api\Data\CategoryInterface,category

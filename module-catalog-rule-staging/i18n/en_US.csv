@@ -1,0 +1,38 @@
+"Smth went to exception","Smth went to exception"
+"You removed this %1 from the update and saved it in a new one.","You removed this %1 from the update and saved it in a new one."
+"You removed this %1 from the update and saved it in the other one.","You removed this %1 from the update and saved it in the other one."
+"You removed this %1 from the update.","You removed this %1 from the update."
+"Required parameters are missing.","Required parameters are missing."
+"You saved this %1 update.","You saved this %1 update."
+ID,ID
+Rule,Rule
+Priority,Priority
+"Web Site","Web Site"
+Action,Action
+Edit,Edit
+"Scheduled Changes","Scheduled Changes"
+"Start Date","Start Date"
+"Start Time","Start Time"
+Name,Name
+Description,Description
+"End Date","End Date"
+"End Time","End Time"
+"Update Information","Update Information"
+"Remove Catalog Price Rule from Update","Remove Catalog Price Rule from Update"
+"Save as a New Update","Save as a New Update"
+"Update Name","Update Name"
+"Rule Information","Rule Information"
+Conditions,Conditions
+Actions,Actions
+"Move to Another Campaign","Move to Another Campaign"
+"Delete the Update","Delete the Update"
+"Deleting the update will remove the catalog price rule from this campaign and all scheduled changes will be lost.","Deleting the update will remove the catalog price rule from this campaign and all scheduled changes will be lost."
+20,20
+30,30
+50,50
+100,100
+200,200
+Websites,Websites
+"Catalog Price Rules","Catalog Price Rules"
+"catalog_rule","Catalog Price Rules"
+Magento\CatalogRule\Api\Data\RuleInterface,"Catalog Price Rule"

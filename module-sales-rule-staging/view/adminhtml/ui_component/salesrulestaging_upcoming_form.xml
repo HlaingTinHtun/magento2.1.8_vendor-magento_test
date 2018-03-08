@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">salesrulestaging_upcoming_form.salesrulestaging_upcoming_form_data_source</item>
+            <item name="deps" xsi:type="string">salesrulestaging_upcoming_form.salesrulestaging_upcoming_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Scheduled Changes</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="config" xsi:type="array">
+            <item name="selectorPrefix" xsi:type="string">.block-schedule</item>
+        </item>
+    </argument>
+    <dataSource name="salesrulestaging_upcoming_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\SalesRuleStaging\Model\Rule\UpcomingDataProvider</argument>
+            <argument name="name" xsi:type="string">salesrulestaging_upcoming_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">rule_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <modal name="salesrulestaging_update_form_modal">
+        <insertForm name="update_form_loader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="ns" xsi:type="string">salesrulestaging_update_form</item>
+                    <item name="component" xsi:type="string">Magento_Staging/js/form/components/insert-form</item>
+                    <item name="loading" xsi:type="boolean">false</item>
+                    <item name="toolbarContainer" xsi:type="string">${ $.parentName }</item>
+                    <item name="render_url" xsi:type="url" path="mui/index/render_handle">
+                        <param name="handle">salesrulestaging_update</param>
+                        <param name="buttons">1</param>
+                    </item>
+                    <item name="externalProvider" xsi:type="string">${ $.ns }.salesrulestaging_update_form_data_source</item>
+                    <item name="formSubmitType" xsi:type="string">ajax</item>
+                    <item name="upcomingListingProvider" xsi:type="string">upcoming_grid</item>
+                    <item name="removeModalProvider" xsi:type="string">${ $.ns}.${ $.ns}.salesrulestaging_update_remove_form_modal</item>
+                    <item name="removeResponseProvider" xsi:type="string">${ $.removeModalProvider }.update_remove_form_loader:responseData</item>
+                    <item name="modalTitleProvider" xsi:type="string">${ $.externalProvider }:data.name</item>
+                    <item name="modalSubTitleProvider" xsi:type="string">${ $.externalProvider }:data.staging.name</item>
+                </item>
+            </argument>
+        </insertForm>
+    </modal>
+    <insertListing name="upcoming_grid">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="autoRender" xsi:type="boolean">true</item>
+                <item name="ns" xsi:type="string">salesrulestaging_upcoming_grid</item>
+                <item name="externalProvider" xsi:type="string">salesrulestaging_upcoming_grid.salesrulestaging_upcoming_grid_data_source</item>
+                <item name="loading" xsi:type="boolean">false</item>
+                <item name="imports" xsi:type="array">
+                    <item name="ruleId" xsi:type="string">${ $.provider }:data.rule_id</item>
+
+                </item>
+                <item name="exports" xsi:type="array">
+                    <item name="ruleId" xsi:type="string">${ $.externalProvider }:params.rule_id</item>
+                </item>
+            </item>
+        </argument>
+    </insertListing>
+</form>

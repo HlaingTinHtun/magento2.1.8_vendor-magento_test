@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="related_catalogrule_banners">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Related Banners</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+            <insertListing name="related_catalogrule_banners_grid">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="autoRender" xsi:type="boolean">true</item>
+                        <item name="dataScope" xsi:type="string">related_banners</item>
+                        <item name="ns" xsi:type="string">related_catalogrule_banners_grid</item>
+                        <item name="externalProvider" xsi:type="string">related_catalogrule_banners_grid.related_catalogrule_banners_grid_data_source</item>
+                        <item name="selectionsProvider" xsi:type="string">related_catalogrule_banners_grid.related_catalogrule_banners_grid.related_catalogrule_banners_columns.ids</item>
+                        <item name="dataLinks" xsi:type="array">
+                            <item name="imports" xsi:type="boolean">true</item>
+                            <item name="exports" xsi:type="boolean">false</item>
+                        </item>
+                        <item name="externalTransfer" xsi:type="boolean">true</item>
+                        <item name="imports" xsi:type="array">
+                            <item name="ruleId" xsi:type="string">${ $.provider }:data.rule_id</item>
+                        </item>
+                        <item name="exports" xsi:type="array">
+                            <item name="ruleId" xsi:type="string">${ $.externalProvider }:params.rule_id</item>
+                        </item>
+                    </item>
+                </argument>
+            </insertListing>
+        </fieldset>
+</form>
