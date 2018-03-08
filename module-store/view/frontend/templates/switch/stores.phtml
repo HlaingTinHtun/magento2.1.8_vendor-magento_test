@@ -5,7 +5,6 @@
  */
 
 // @codingStandardsIgnoreFile
-
 ?>
 <?php
 /**
@@ -13,38 +12,64 @@
  *
  * @see \Magento\Store\Block\Store\Switcher
  */
+
+$objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+//var_dump($storeManager->getStore()->getData());
+//$storeManager->getStore()->getStoreId() . '<br />';
+//$storeManager->getStore()->getCode() . '<br />';
+// $storeManager->getStore()->getWebsiteId() . '<br />';
+//$storeManager->getStore()->getName() . '<br />';
+//$storeManager->getStore()->getStoreUrl() . '<br />';
+$lang= $storeManager->getStore()->getName();
 ?>
-<?php if (count($block->getGroups())>1): ?>
-<div class="switcher store switcher-store" id="switcher-store">
-    <strong class="label switcher-label"><span><?php /* @escapeNotVerified */ echo __('Select Store') ?></span></strong>
-    <div class="actions dropdown options switcher-options">
-        <?php foreach ($block->getGroups() as $_group): ?>
-        <?php if ($_group->getId() == $block->getCurrentGroupId()): ?>
-            <div class="action toggle switcher-trigger"
-                 role="button"
-                 tabindex="0"
-                 data-mage-init='{"dropdown":{}}'
-                 data-toggle="dropdown"
-                 data-trigger-keypress-button="true"
-                 id="switcher-store-trigger">
-                <strong>
-                    <span><?php echo $block->escapeHtml($_group->getName()) ?></span>
-                </strong>
-            </div>
-        <?php endif; ?>
-        <?php endforeach; ?>
-        <ul class="dropdown switcher-dropdown" data-target="dropdown">
-            <?php foreach ($block->getGroups() as $_group): ?>
-            <?php if (!($_group->getId() == $block->getCurrentGroupId())): ?>
-                <li class="switcher-option">
-                    <a href="#"
-                       data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_group->getDefaultStore()); ?>'>
-                        <?php echo $block->escapeHtml($_group->getName()) ?>
-                    </a>
-                </li>
-            <?php endif; ?>
-            <?php endforeach; ?>
-        </ul>
+
+<div class="dropdown store-drop">
+  <p class="p-shop">Shop by</p>
+  <?php foreach ($block->getGroups() as $_group): ?>
+  <?php if ($_group->getId() == $block->getCurrentGroupId()): ?>
+    <div class="dropdown-store"><?php echo __('Stores') ?><?php // echo $block->escapeHtml($_group->getName())  ?>
+    <!-- <span class="caret"></span> -->
     </div>
+  <?php endif; ?>
+  <?php endforeach; ?>
+  <ul class="dropdown-menu">
+    <?php
+      $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+      $storeManager = $objectManager->get('\Magento\Store\Model\StoreManagerInterface');
+      //var_dump($storeManager->getStore()->getData());
+      //$storeManager->getStore()->getStoreId() . '<br />';
+      //$storeManager->getStore()->getCode() . '<br />';
+      // $storeManager->getStore()->getWebsiteId() . '<br />';
+      //$storeManager->getStore()->getName() . '<br />';
+      //$storeManager->getStore()->getStoreUrl() . '<br />';
+      $lang= $storeManager->getStore()->getName();
+      if ($lang){
+    ?>
+      <li><a href="/citymart<?php echo '_'.$lang ?>"><?php echo __('City Mart Supermarket') ?></a></li>
+      <li><a href="/ocean<?php echo '_'.$lang ?>"><?php echo __('Ocean Supercenter') ?></a></li>
+      <li><a href="/citycare<?php echo '_'.$lang ?>"><?php echo __('City Care Health & Beauty Store') ?></a></li>
+      <li><a href="/citybaby<?php echo '_'.$lang ?>"><?php echo __('City Baby Club') ?></a></li>
+      <li><a href="/safari<?php echo '_'.$lang ?>"><?php echo __('Safari Book Store') ?></a></li>
+      <li><a href="http://www.citymall.com.mm/stores<?php echo '_'.$lang ?>"><?php echo __('Stores') ?></a></li>
+    <?php } ?>
+  </ul>
 </div>
-<?php endif; ?>
+
+<script>
+  jQuery(document).ready(function(){
+
+    jQuery(".dropdown-store").hover(function(){
+      jQuery('.dropdown-menu').show();
+    });
+
+    // jQuery(".dropdown-toggle").mouseenter(function(){
+    //              jQuery('.dropdown-menu').show();
+    //        });
+
+    jQuery(".right-border,.top-nav").mouseleave(function(){
+      jQuery('.dropdown-menu').hide();
+    });
+  });
+
+</script>

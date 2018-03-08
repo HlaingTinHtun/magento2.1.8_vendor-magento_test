@@ -139,7 +139,6 @@ class Gd2 extends \Magento\Framework\Image\Adapter\AbstractAdapter
     public function save($destination = null, $newName = null)
     {
         $fileName = $this->_prepareDestination($destination, $newName);
-
         if (!$this->_resized) {
             // keep alpha transparency
             $isAlpha = false;
@@ -157,7 +156,6 @@ class Gd2 extends \Magento\Framework\Image\Adapter\AbstractAdapter
                 $this->_imageHandler = $newImage;
             }
         }
-
         // Enable interlace
         imageinterlace($this->_imageHandler, true);
 
@@ -229,27 +227,26 @@ class Gd2 extends \Magento\Framework\Image\Adapter\AbstractAdapter
      */
     private function _fillBackgroundColor(&$imageResourceTo)
     {
-        // try to keep transparency, if any
+// try to keep transparency, if any
         if ($this->_keepTransparency) {
             $isAlpha = false;
             $transparentIndex = $this->_getTransparency($this->_imageHandler, $this->_fileType, $isAlpha);
-            try {
+try {
                 // fill truecolor png with alpha transparency
                 if ($isAlpha) {
                     if (!imagealphablending($imageResourceTo, false)) {
                         throw new \Exception('Failed to set alpha blending for PNG image.');
                     }
-                    $transparentAlphaColor = imagecolorallocatealpha($imageResourceTo, 0, 0, 0, 127);
+                    $transparentAlphaColor = imagecolorallocatealpha($imageResourceTo, 255, 255, 255, 127);
                     if (false === $transparentAlphaColor) {
                         throw new \Exception('Failed to allocate alpha transparency for PNG image.');
                     }
                     if (!imagefill($imageResourceTo, 0, 0, $transparentAlphaColor)) {
-                        throw new \Exception('Failed to fill PNG image with alpha transparency.');
+          throw new \Exception('Failed to fill PNG image with alpha transparency.');
                     }
                     if (!imagesavealpha($imageResourceTo, true)) {
-                        throw new \Exception('Failed to save alpha transparency into PNG image.');
+           throw new \Exception('Failed to save alpha transparency into PNG image.');
                     }
-
                     return $transparentAlphaColor;
                 } elseif (false !== $transparentIndex) {
                     // fill image with indexed non-alpha transparency
@@ -306,10 +303,11 @@ class Gd2 extends \Magento\Framework\Image\Adapter\AbstractAdapter
         $isAlpha = false;
         $isTrueColor = false;
         // assume that transparency is supported by gif/png only
-        if (IMAGETYPE_GIF === $fileType || IMAGETYPE_PNG === $fileType) {
+	if (IMAGETYPE_GIF === $fileType || IMAGETYPE_PNG === $fileType) {
             // check for specific transparent color
             $transparentIndex = imagecolortransparent($imageResource);
-            if ($transparentIndex >= 0) {
+            
+	    if ($transparentIndex >= 0) {
                 return $transparentIndex;
             } elseif (IMAGETYPE_PNG === $fileType) {
                 // assume that truecolor PNG has transparency
@@ -344,7 +342,7 @@ class Gd2 extends \Magento\Framework\Image\Adapter\AbstractAdapter
             $newImage = imagecreatetruecolor($dims['frame']['width'], $dims['frame']['height']);
         } else {
             $newImage = imagecreate($dims['frame']['width'], $dims['frame']['height']);
-        }
+       }
 
         if ($isAlpha) {
             $this->_saveAlpha($newImage);
@@ -695,7 +693,7 @@ class Gd2 extends \Magento\Framework\Image\Adapter\AbstractAdapter
     {
         $error = false;
         $this->_resized = true;
-        try {
+ try {
             $this->_createImageFromTtfText($text, $font);
         } catch (\Exception $e) {
             $error = true;

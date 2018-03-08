@@ -12,7 +12,7 @@
  */
 ?>
 <?php if ($block->includeTax() && $block->getTotalExclTax() >= 0):?>
-<tr class="row-totals">
+<tr class="row-totals" style="display:none;" >
     <td style="<?php /* @escapeNotVerified */ echo $block->getStyle() ?>" class="admin__total-mark" colspan="<?php /* @escapeNotVerified */ echo $block->getColspan(); ?>">
         <strong><?php /* @escapeNotVerified */ echo __('Grand Total Excl. Tax')?></strong>
     </td>

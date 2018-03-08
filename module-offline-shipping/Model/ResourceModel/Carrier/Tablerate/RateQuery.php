@@ -70,7 +70,9 @@ class RateQuery
             }
         } else {
             $select->where('condition_name = :condition_name');
-            $select->where('condition_value <= :condition_value');
+            // @@@@@ EPL change below for table rate shipping
+            // $select->where('condition_value <= :condition_value');
+            $select->where('condition_value >= :condition_value');
         }
         return $select;
     }

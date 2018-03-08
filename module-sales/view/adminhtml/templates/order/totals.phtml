@@ -20,20 +20,7 @@
 
     <?php if ($_totals):?>
         <tfoot>
-            <?php foreach ($block->getTotals('footer') as $_code => $_total): ?>
-                <?php if ($_total->getBlockName()): ?>
-                    <?php echo $block->getChildHtml($_total->getBlockName(), false); ?>
-                <?php else:?>
-                <tr class="col-<?php /* @escapeNotVerified */ echo $_code?>">
-                    <td <?php /* @escapeNotVerified */ echo $block->getLabelProperties()?> class="label">
-                        <strong><?php echo $block->escapeHtml($_total->getLabel()); ?></strong>
-                    </td>
-                    <td <?php /* @escapeNotVerified */ echo $block->getValueProperties()?>>
-                        <strong><?php /* @escapeNotVerified */ echo $block->formatValue($_total) ?></strong>
-                    </td>
-                </tr>
-                <?php endif?>
-            <?php endforeach?>
+          <!-- Thitsar Edit -->
         </tfoot>
     <?php endif?>
 

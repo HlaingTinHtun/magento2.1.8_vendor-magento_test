@@ -54,17 +54,17 @@ class Grandtotal extends \Magento\Sales\Model\Order\Pdf\Total\DefaultTotal
         $tax = $this->getOrder()->formatPriceTxt($this->getSource()->getTaxAmount());
         $fontSize = $this->getFontSize() ? $this->getFontSize() : 7;
 
-        $totals = [
-            [
-                'amount' => $this->getAmountPrefix() . $amountExclTax,
-                'label' => __('Grand Total (Excl. Tax)') . ':',
-                'font_size' => $fontSize,
-            ],
-        ];
+      //  $totals = [
+          //  [
+          //      'amount' => $this->getAmountPrefix() . $amountExclTax,
+          //     'label' => __('Grand Total (Excl. Tax)') . ':',
+           //     'font_size' => $fontSize,
+        //    ],
+      //  ];
 
-        if ($this->_taxConfig->displaySalesFullSummary($store)) {
-            $totals = array_merge($totals, $this->getFullTaxInfo());
-        }
+//        if ($this->_taxConfig->displaySalesFullSummary($store)) {
+    //        $totals = array_merge($totals, $this->getFullTaxInfo());
+  //      }
 
         $totals[] = [
             'amount' => $this->getAmountPrefix() . $tax,

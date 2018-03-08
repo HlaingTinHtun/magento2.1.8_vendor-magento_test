@@ -277,7 +277,8 @@ class Timezone implements TimezoneInterface
             $locale ?: $this->_localeResolver->getLocale(),
             $dateType,
             $timeType,
-            $timezone,
+            //$timezone,
+	    'Asia/Rangoon',
             null,
             $pattern
         );

@@ -289,11 +289,11 @@ class Tax extends \Magento\Framework\View\Element\Template
             $baseGrandtotalExcl = max($baseGrandtotalExcl, 0);
             $totalExcl = new \Magento\Framework\DataObject(
                 [
-                    'code' => 'grand_total',
-                    'strong' => true,
-                    'value' => $grandtotalExcl,
-                    'base_value' => $baseGrandtotalExcl,
-                    'label' => __('Grand Total (Excl.Tax)'),
+                //    'code' => 'grand_total',
+                //    'strong' => true,
+                //    'value' => $grandtotalExcl,
+                //    'base_value' => $baseGrandtotalExcl,
+                  //  'label' => __('Grand Total (Excl.Tax)'),
                 ]
             );
             $totalIncl = new \Magento\Framework\DataObject(
@@ -305,7 +305,7 @@ class Tax extends \Magento\Framework\View\Element\Template
                     'label' => __('Grand Total (Incl.Tax)'),
                 ]
             );
-            $parent->addTotal($totalExcl, 'grand_total');
+          //  $parent->addTotal($totalExcl, 'grand_total');
             $this->_addTax('grand_total');
             $parent->addTotal($totalIncl, 'tax');
         }

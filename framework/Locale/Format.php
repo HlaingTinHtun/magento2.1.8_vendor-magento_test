@@ -151,9 +151,11 @@ class Format implements \Magento\Framework\Locale\FormatInterface
         $result = [
             //TODO: change interface
             'pattern' => $currency->getOutputFormat(),
-            'precision' => $totalPrecision,
-            'requiredPrecision' => $requiredPrecision,
-            'decimalSymbol' => $decimalSymbol,
+            //'precision' => $totalPrecision,
+		'precision' => 0,
+            //'requiredPrecision' => $requiredPrecision,
+            'requiredPrecision' => 0,
+		'decimalSymbol' => $decimalSymbol,
             'groupSymbol' => $groupSymbol,
             'groupLength' => $group,
             'integerRequired' => $integerRequired,

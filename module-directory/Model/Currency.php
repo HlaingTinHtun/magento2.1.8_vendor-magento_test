@@ -310,13 +310,20 @@ class Currency extends \Magento\Framework\Model\AbstractModel
         if (!is_numeric($price)) {
             $price = $this->_localeFormat->getNumber($price);
         }
+        // TSE START: remove zero decimal
+        $precision = isset($options['precision']) ? $options['precision'] : 0;
+        $zeroDecimal = (round($price, $precision) == round($price, 0));
+        if ($zeroDecimal) {
+            $options['precision'] = 0;
+        }
+ // TSE END: remove zero decimal
         /**
          * Fix problem with 12 000 000, 1 200 000
          *
          * %f - the argument is treated as a float, and presented as a floating-point number (locale aware).
          * %F - the argument is treated as a float, and presented as a floating-point number (non-locale aware).
          */
-        $price = sprintf("%F", $price);
+         $price = sprintf("%F", $price);
         return $this->_localeCurrency->getCurrency($this->getCode())->toCurrency($price, $options);
     }
 
